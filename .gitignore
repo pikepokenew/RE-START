@@ -1,0 +1,11 @@
+
+# 大型数据文件（不提交到 Git）
+*.json
+*.jsonl
+*.jsonl.gz
+evaluate/code/*.json
+evaluate/train_guard/*.json
+evaluate/harmful_questions/*.json
+evaluate/harmful_questions/data/
+evaluate/math/
+evaluate/evaluate/results/
