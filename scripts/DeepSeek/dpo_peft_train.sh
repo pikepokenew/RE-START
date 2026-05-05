@@ -8,10 +8,7 @@
 #SBATCH --gres=gpu:nvidia_a100_80gb_pcie:1
 #SBATCH -w gpu17
 
-source /home/dwu/miniconda3/etc/profile.d/conda.sh
-
-conda activate immune
-
+ENV_BIN="/apdcephfs_jn3/share_535475/common/dellwu/envs/qwen3_env/bin/"
 screen -dmS clash /home/dwu/clash/clash -f /home/dwu/clash/config.yaml
 export http_proxy=http://127.0.0.1:8991 && export https_proxy=http://127.0.0.1:8991 && export all_proxy=http://127.0.0.1:8991
 

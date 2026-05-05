@@ -1,20 +1,4 @@
-#!/bin/bash
-#SBATCH -J Eval-Model
-#SBATCH -o logs_and_outputs/eval/Eval-Model-test-slurm-%j.out                           
-#SBATCH -p compute                            
-#SBATCH -N 1                                  
-#SBATCH -t 24:00:00     
-#SBATCH --mem=64gb
-#SBATCH --gres=gpu:nvidia_a800_80gb_pcie:1
-#SBATCH -w gpu20
-
-source /home/dwu/miniconda3/etc/profile.d/conda.sh
-run_env=immune
-conda activate $run_env
-
-screen -dmS clash /home/dwu/clash/clash -f /home/dwu/clash/config.yaml
-export http_proxy=http://127.0.0.1:8991 && export https_proxy=http://127.0.0.1:8991 && export all_proxy=http://127.0.0.1:8991
-
+# 帮我整理一下这段代码.
 nvidia-smi
 
 stage1="true"  # 控制是否执行 Safety 测试阶段

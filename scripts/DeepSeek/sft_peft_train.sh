@@ -1,61 +1,48 @@
-#!/bin/bash
-#SBATCH -J DS-R1-Safe-SFT
-#SBATCH -o logs_and_outputs/train/DS-R1-Safe-SFT-slurm-%j.out                           
-#SBATCH -p compute                            
-#SBATCH -N 1                                  
-#SBATCH -t 12:00:00     
-#SBATCH --mem=64gb
-#SBATCH --gres=gpu:a100-sxm4-80gb:1
-#SBATCH -w gpu19
-
-source /home/dwu/miniconda3/etc/profile.d/conda.sh
-
-conda activate immune
-
-screen -dmS clash /home/dwu/clash/clash -f /home/dwu/clash/config.yaml
-export http_proxy=http://127.0.0.1:8991 && export https_proxy=http://127.0.0.1:8991 && export all_proxy=http://127.0.0.1:8991
-
-port=$(shuf -i25000-30000 -n1)
-
 nvidia-smi
-cd ~/LLaMA-Factory
 
+conda activate /apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env
+
+ENV_BIN="/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/bin/"
+cd /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory
 lr_list=("5e-5")
 epoch=3
 batch_size_list=("4")
 template="deepseek3"
-DEVICES="0"
+DEVICES="0,1,2,3,4,5,6,7,8"
+# DEVICES="0"
 lora_rank=64
 lora_alpha=64
 tag=""
-# dataset_name="wildjailbreak_train_R1_Qwen_DA_sft_gcg_iter_2_random_v1_1"
+port=29500  # 添加port变量定义
+# dataset_name="wildjailbreak_train_R1_Qwen_DA_scg_iter_2_random_v1_1"
 # dataset_name="wildjailbreak_train_DS-V3.2-Exp-thinking_self_align_v2_sft_v3-0_UF"
 # dataset_name="wildjailbreak_train_DS-V3.2-Exp-thinking_self_align_v2_sft_v3-0_UF"
 # dataset_name=wildjailbreak_train_R1_Qwen_self_align_v2_1_sft_rnd_mask_hint16_helpful_v3-1_UF
-
-dataset_name=OpenMathInstruct-2_10k_STAR-S_filtered_Hard
+# dataset_name="wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint"
+dataset_name="wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint"
+# dataset_name=OpenMathInstruct-2_10k_STAR-S_filtered_Hard
 
 for lr in "${lr_list[@]}"; do
     for batch_size in "${batch_size_list[@]}"; do
     
     # lr_scheduler_type=constant
     lr_scheduler_type=cosine
-    model_folder="/home/share/models"
+    # model_folder="/home/share/models"
     # model_folder="/home/dwu/local_models"
     # model_folder="/home/dwu/LLaMA-Factory/models"
     # base_model_name=DeepSeek-R1-Distill-Llama-8B
     base_model_name=DeepSeek-R1-Distill-Qwen-14B
-
+    model_name_or_path="/apdcephfs_nj4/share_300616873/hunyuan/external/DeepSeek-R1-Distill-Qwen-14B"
     # base_model_name=DeepSeek-R1-Distill-Qwen-7B
     # lora_name=${base_model_name}_peft_${dataset_name}${tag}_r${lora_rank}_${lora_alpha}_${lr}_${lr_scheduler_type}_bs_${batch_size}_ep_${epoch}_adapter
     lora_name=peft_${dataset_name}${tag}_r${lora_rank}_${lora_alpha}_${lr}_${lr_scheduler_type}_bs_${batch_size}_ep_${epoch}_adapter
     target_model_name=${base_model_name}_peft_${dataset_name}${tag}_r${lora_rank}_${lora_alpha}_${lr}_${lr_scheduler_type}_bs_${batch_size}_ep_${epoch}
     
-    CUDA_VISIBLE_DEVICES=$DEVICES DS_SKIP_CUDA_CHECK=1 deepspeed --master_port $port src/train.py \
-        --deepspeed examples/deepspeed/ds_z3_config.json \
+    # 使用llamafactory-cli train命令进行训练
+    CUDA_VISIBLE_DEVICES=$DEVICES ${ENV_BIN}llamafactory-cli train \
         --stage sft \
         --do_train \
-        --model_name_or_path ${model_folder}/${base_model_name} \
+        --model_name_or_path ${model_name_or_path} \
         --dataset ${dataset_name} \
         --template $template \
         --finetuning_type lora \
@@ -75,10 +62,9 @@ for lr in "${lr_list[@]}"; do
         --plot_loss \
         --fp16
 
-    # Merge LoRA
-
-    python src/export_model.py \
-        --model_name_or_path ${model_folder}/${base_model_name} \
+    # 使用llamafactory-cli export命令合并LoRA
+    ${ENV_BIN}llamafactory-cli export \
+        --model_name_or_path ${model_name_or_path} \
         --adapter_name_or_path saves/${base_model_name}/lora/${lora_name} \
         --finetuning_type lora \
         --template $template \
