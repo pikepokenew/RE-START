@@ -1,0 +1,139 @@
+nohup: ignoring input
+========================================
+[preflight] running pre-flight checks...
+[preflight] OK
+========================================
+
+========================================
+[plan] iterative self-distillation workflow
+  NUM_ROUNDS       = 3
+  START_ROUND      = 1
+  LR_SCHED         = constant
+  FORCE_GEN        = 0
+  FORCE_TRAIN      = 1
+  FORCE_EVAL       = 1
+  SKIP_STAGES      = ''
+  DRY_RUN          = 0
+  SKIP_GPU_STRESS  = 0
+  LOG_ROOT         = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751
+----------------------------------------
+  [round 1]
+    M_k (input)         = DeepSeek-R1-Distill-Qwen-14B
+    M_k path            = /apdcephfs_nj4/share_300616873/hunyuan/external/DeepSeek-R1-Distill-Qwen-14B
+    round output tag    = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    round output path   = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    dataset name        = wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint
+    train json path     = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint.json
+    file_list:
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B/merged/step2_DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_random_wildguard_0_5000.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B/merged/step4_DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_hint16_wildguard_0_5000.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json
+  [round 2]
+    M_k (input)         = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    M_k path            = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    round output tag    = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    round output path   = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    dataset name        = wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint
+    train json path     = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint.json
+    file_list:
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3/merged/step2_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_self_align_v2_prefix_random_wildguard_0_5000.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3/merged/step4_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_self_align_v2_prefix_0_hint16_wildguard_0_5000.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_self_align_v2_prefix_0_wildguard.json
+  [round 3]
+    M_k (input)         = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    M_k path            = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    round output tag    = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    round output path   = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    dataset name        = wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint
+    train json path     = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint.json
+    file_list:
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3/merged/step2_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3_self_align_v2_prefix_random_wildguard_0_5000.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3/merged/step4_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3_self_align_v2_prefix_0_hint16_wildguard_0_5000.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json
+      * /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_self_align_v2_prefix_0_wildguard.json
+========================================
+
+========================================
+===== Round 1 / 3 =====
+========================================
+[round 1] generate_wildjailbreak: artifacts already exist, skipping.
+            /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B/merged/step2_DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_random_wildguard_0_5000.json
+            /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B/merged/step4_DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_hint16_wildguard_0_5000.json
+[round 1] generate_ultrafeedback: artifact already exists, skipping.
+            /apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json
+
+---- [round 1] stage 'make_train_data' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round1/make_train_data.log) ----
+[round 1] stage 'make_train_data' OK
+
+---- [round 1] stage 'train' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round1/train.log) ----
+[round 1] stage 'train' OK
+
+---- [round 1] stage 'eval' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round1/eval.log) ----
+[round 1] stage 'eval' OK
+[round 1] all stages done.
+
+========================================
+===== Round 2 / 3 =====
+========================================
+
+---- [round 2] stage 'generate_wildjailbreak' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round2/generate_wildjailbreak.log) ----
+[round 2] stage 'generate_wildjailbreak' OK
+
+---- [round 2] stage 'generate_ultrafeedback' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round2/generate_ultrafeedback.log) ----
+[round 2] stage 'generate_ultrafeedback' OK
+
+---- [round 2] stage 'make_train_data' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round2/make_train_data.log) ----
+[round 2] stage 'make_train_data' OK
+
+---- [round 2] stage 'train' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round2/train.log) ----
+[round 2] stage 'train' OK
+
+---- [round 2] stage 'eval' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round2/eval.log) ----
+[round 2] stage 'eval' OK
+[round 2] all stages done.
+
+========================================
+===== Round 3 / 3 =====
+========================================
+
+---- [round 3] stage 'generate_wildjailbreak' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round3/generate_wildjailbreak.log) ----
+[round 3] stage 'generate_wildjailbreak' OK
+
+---- [round 3] stage 'generate_ultrafeedback' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round3/generate_ultrafeedback.log) ----
+[round 3] stage 'generate_ultrafeedback' OK
+
+---- [round 3] stage 'make_train_data' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round3/make_train_data.log) ----
+[round 3] stage 'make_train_data' OK
+
+---- [round 3] stage 'train' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round3/train.log) ----
+[round 3] stage 'train' OK
+
+---- [round 3] stage 'eval' start (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round3/eval.log) ----
+[round 3] stage 'eval' OK
+[round 3] all stages done.
+
+========================================
+[summary] workflow completed (status=succeeded)
+  [round 1]
+    merged model tag  = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    merged model path = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    logs              = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round1/
+  [round 2]
+    merged model tag  = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    merged model path = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    logs              = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round2/
+  [round 3]
+    merged model tag  = DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    merged model path = /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+    logs              = /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/round3/
+========================================
+
+========================================
+[workflow] exiting (rc=0), status=succeeded
+  log root      : /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751
+========================================
+[gpu_stress] starting foreground-blocking GPU saturation...
+[gpu_stress] command: python /apdcephfs_jn3/share_535475/common/dellwu/OpenRubric/gpu_stress_8gpu.py
+[gpu_stress] log    : /apdcephfs_jn3/share_535475/common/dellwu/RE-START/logs/auto_workflow_20260506_031751/gpu_stress.log
+[gpu_stress] press Ctrl+C to release the node.

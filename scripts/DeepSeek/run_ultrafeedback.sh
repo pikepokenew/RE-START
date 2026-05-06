@@ -23,8 +23,8 @@ GEN_SCRIPT="${REPO_ROOT}/evaluate/context_distillation_with_hint.py"
 # -----------------------------------------------------------------------------
 # MODEL_PATH="/apdcephfs_nj4/share_300616873/hunyuan/external/DeepSeek-R1-Distill-Qwen-14B"
 # MODEL_TAG="DeepSeek-R1-Distill-Qwen-14B"
-MODEL_PATH="/apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3"
-MODEL_TAG="DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3"
+MODEL_PATH="/apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3"
+MODEL_TAG="DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3"
 
 DATASET_PATH="${REPO_ROOT}/data/ultrafeedback_train_1k.json"
 DATASET_NAME="ultrafeedback_train_1k"

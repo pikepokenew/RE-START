@@ -1,0 +1,21 @@
+>> [GPU 0] 开始处理数据子集 0 | 2026-05-05 20:42:32
+   模型: DeepSeek-R1-Distill-Qwen-14B
+   数据集子集: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/eval_8gpu_20260505_204229/data_subsets/Salad-attack_enhanced_set_sub_v1_subset_gpu0.json
+   参数: temperature=0.6, n=64
+   输出文件: evaluate/results/Salad-attack_enhanced_set_sub_v1/DeepSeek-R1-Distill-Qwen-14B_gpu0_tag_temp06_n64.json
+[GPU 0] 开始推理生成...
+usage: run_inference.py [-h] --model MODEL [--save_path SAVE_PATH]
+                        [--save_name SAVE_NAME] [--num_samples NUM_SAMPLES]
+                        --datasets DATASETS
+                        [--tag {Improved_CoT,RealSafe,Self-Align,deliberative_list,deliberative_spec,deliberative_v0,deliberative_v0_zt,deliberative_v1,deliberative_v1_zt,none,self_align_test,self_align_test_v2,self_align_v2,self_align_v2_look_ahead,self_align_v3,zero_think}]
+                        [--batch_size BATCH_SIZE]
+                        [--n_generation N_GENERATION]
+                        [--max_new_tokens MAX_NEW_TOKENS]
+                        [--temperature TEMPERATURE]
+                        [--tensor_parallel_size TENSOR_PARALLEL_SIZE]
+                        [--top_p TOP_P] [--seed SEED]
+                        [--gpu_memory_utilization GPU_MEMORY_UTILIZATION]
+run_inference.py: error: argument --tag: invalid choice: 'gpu0_temp06_n64' (choose from 'Improved_CoT', 'RealSafe', 'Self-Align', 'deliberative_list', 'deliberative_spec', 'deliberative_v0', 'deliberative_v0_zt', 'deliberative_v1', 'deliberative_v1_zt', 'none', 'self_align_test', 'self_align_test_v2', 'self_align_v2', 'self_align_v2_look_ahead', 'self_align_v3', 'zero_think')
+[GPU 0] 开始MD-Judge评估...
+[ERROR] 推理输出不存在: evaluate/results/Salad-attack_enhanced_set_sub_v1/DeepSeek-R1-Distill-Qwen-14B_gpu0_tag_temp06_n64.json
+<< [GPU 0] 子集 0 完成 | 2026-05-05 20:43:54

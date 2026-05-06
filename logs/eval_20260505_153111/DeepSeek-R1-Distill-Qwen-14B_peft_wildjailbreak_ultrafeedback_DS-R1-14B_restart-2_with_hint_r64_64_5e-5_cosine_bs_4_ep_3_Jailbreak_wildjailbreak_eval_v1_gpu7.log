@@ -1,0 +1,7 @@
+>> [GPU 7] Jailbreak/wildjailbreak_eval_v1 | 2026-05-05 16:57:12
+Traceback (most recent call last):
+  File "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/run_inference.py", line 22, in <module>
+    from transformers import AutoTokenizer
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/transformers/__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>

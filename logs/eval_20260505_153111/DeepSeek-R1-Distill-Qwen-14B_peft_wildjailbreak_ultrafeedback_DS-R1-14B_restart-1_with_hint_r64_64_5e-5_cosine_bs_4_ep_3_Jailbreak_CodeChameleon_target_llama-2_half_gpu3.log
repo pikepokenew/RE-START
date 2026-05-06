@@ -1,0 +1,11 @@
+>> [GPU 3] Jailbreak/CodeChameleon_target_llama-2_half | 2026-05-05 16:57:04
+Traceback (most recent call last):
+  File "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/run_inference.py", line 15, in <module>
+    import argparse
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1032, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1131, in get_data
+KeyboardInterrupt

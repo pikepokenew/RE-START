@@ -3,6 +3,7 @@ import os
 from typing import List, Dict, Any
 
 # 读取
+# 第一轮
 # file_list = [
 #     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B/merged/step2_DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_random_wildguard_0_5000.json",
 #     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B/merged/step4_DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_hint16_wildguard_0_5000.json",
@@ -11,14 +12,24 @@ from typing import List, Dict, Any
 
 # output_file = "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint.json"
 
-file_list = [
-    "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/merged/step2_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_random_wildguard_0_5000.json",
-    "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/merged/step4_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_0_hint16_wildguard_0_5000.json",
-    "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json",
-    "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_0_wildguard.json"
-]
+# 第二轮
+# file_list = [
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/merged/step2_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_random_wildguard_0_5000.json",
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/merged/step4_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_0_hint16_wildguard_0_5000.json",
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json",
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_0_wildguard.json"
+# ]
 
-output_file = "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint.json"
+# output_file = "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint.json"
+# 第三轮
+# file_list = [
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/merged/step2_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_random_wildguard_0_5000.json",
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/wildjailbreak_train_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/merged/step4_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_0_hint16_wildguard_0_5000.json",
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B/DeepSeek-R1-Distill-Qwen-14B_self_align_v2_prefix_0_wildguard.json",
+#     "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/results/ultrafeedback_train_1k_DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint_r64_64_5e-5_cosine_bs_4_ep_3_self_align_v2_prefix_0_wildguard.json"
+# ]
+
+# output_file = "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/data/wildjailbreak_ultrafeedback_DS-R1-14B_restart-3_with_hint.json"
 
 
 # file_list = [

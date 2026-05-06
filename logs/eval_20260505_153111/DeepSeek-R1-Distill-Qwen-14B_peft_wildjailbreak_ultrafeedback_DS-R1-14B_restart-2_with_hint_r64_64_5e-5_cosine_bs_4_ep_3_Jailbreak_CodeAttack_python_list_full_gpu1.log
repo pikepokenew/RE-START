@@ -1,0 +1,15 @@
+>> [GPU 1] Jailbreak/CodeAttack/python_list_full | 2026-05-05 16:57:14
+Traceback (most recent call last):
+  File "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/CodeAttack/main_test.py", line 6, in <module>
+    import openai
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/openai/__init__.py", line 9, in <module>
+    from . import types
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/openai/types/__init__.py", line 5, in <module>
+    from .batch import Batch as Batch
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/openai/types/batch.py", line 6, in <module>
+    from .._models import BaseModel
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/openai/_models.py", line 21, in <module>
+    from datetime import date, datetime
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/datetime.py", line 2615, in <module>
+    from _datetime import *
+KeyboardInterrupt

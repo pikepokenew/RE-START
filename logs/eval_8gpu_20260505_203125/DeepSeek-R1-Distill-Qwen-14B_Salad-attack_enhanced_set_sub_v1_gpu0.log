@@ -1,0 +1,16 @@
+>> [GPU 0] 开始任务 | 2026-05-05 20:31:27
+   模型: DeepSeek-R1-Distill-Qwen-14B
+   数据集: Salad-attack_enhanced_set_sub_v1
+   参数: temperature=0.6, n=64
+   输出文件: evaluate/results/Salad-attack_enhanced_set_sub_v1/DeepSeek-R1-Distill-Qwen-14B_64_tag_temp06_n64.json
+[GPU 0] 开始推理生成...
+Traceback (most recent call last):
+  File "/apdcephfs_jn3/share_535475/common/dellwu/RE-START/evaluate/run_inference.py", line 22, in <module>
+    from transformers import AutoTokenizer
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/transformers/__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/transformers/utils/__init__.py", line 24, in <module>
+    from .auto_docstring import (
+  File "/apdcephfs_jn3/share_535475/common/dellwu/envs/llamafactory_env/lib/python3.11/site-packages/transformers/utils/auto_docstring.py", line 30, in <module>

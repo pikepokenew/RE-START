@@ -271,46 +271,34 @@ else
     TOTAL=$("${PY}" -c "import json; print(len(json.load(open('${STEP1_MERGED}'))))")
     echo -e "\n[Step 2] Moderation judge (parallel=${PARALLEL_JUDGE}, ${NUM_SHARDS} shards over ${TOTAL} items)"
     compute_shards "${TOTAL}"
-    # 由于 moderation_as_judge 不支持 start_idx/end_idx，这里先切文件再 judge
-    # 切片用 Python 就地完成
-    "${PY}" - "${STEP1_MERGED}" "${SHARD_DIR}/step2/src" "${NUM_SHARDS}" <<'PYEOF'
-import json, os, sys
-src, out_prefix, n = sys.argv[1], sys.argv[2], int(sys.argv[3])
-os.makedirs(os.path.dirname(out_prefix), exist_ok=True)
-data = json.load(open(src, "r", encoding="utf-8"))
-total = len(data); base = total // n; rem = total % n
-cursor = 0
-for i in range(n):
-    length = base + (1 if i < rem else 0)
-    chunk = data[cursor:cursor+length]
-    cursor += length
-    path = f"{out_prefix}_shard{i}.json"
-    json.dump(chunk, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=4)
-    print(f"[split] {path}  size={len(chunk)}")
-PYEOF
 
     PIDS=()
     for ((i=0; i<NUM_SHARDS; i++)); do
         gpu=${GPU_ARR[i]}
-        in="${SHARD_DIR}/step2/src_shard${i}.json"
-        out="${SHARD_DIR}/step2/shard${i}_${SHARD_S[i]}_${SHARD_E[i]}.json"
+        s=${SHARD_S[i]}
+        e=${SHARD_E[i]}
+        out="${SHARD_DIR}/step2/shard${i}_${s}_${e}.json"
         log="${LOG_DIR}/step2_shard${i}_gpu${gpu}.log"
         if (( PARALLEL_JUDGE )); then
             (
                 export CUDA_VISIBLE_DEVICES="${gpu}"
                 "${PY}" "${JUDGE_SCRIPT}" \
-                    --response_file "${in}" \
+                    --response_file "${STEP1_MERGED}" \
+                    --start_idx "${s}" \
+                    --end_idx "${e}" \
                     --moderation "${MODERATION_MODEL}" \
                     --save_name "${out}"
             ) >"${log}" 2>&1 &
             PIDS+=("$!")
-            echo "  shard ${i} gpu=${gpu} pid=$! log=${log}"
+            echo "  shard ${i} gpu=${gpu} range=[${s},${e}) pid=$! log=${log}"
         else
-            echo "  [seq] shard ${i} gpu=${gpu} log=${log}"
+            echo "  [seq] shard ${i} gpu=${gpu} range=[${s},${e}) log=${log}"
             (
                 export CUDA_VISIBLE_DEVICES="${gpu}"
                 "${PY}" "${JUDGE_SCRIPT}" \
-                    --response_file "${in}" \
+                    --response_file "${STEP1_MERGED}" \
+                    --start_idx "${s}" \
+                    --end_idx "${e}" \
                     --moderation "${MODERATION_MODEL}" \
                     --save_name "${out}"
             ) >"${log}" 2>&1 || { echo "[FATAL] Step 2 shard ${i} failed"; exit 1; }
@@ -387,45 +375,40 @@ else
             JUDGE_SHARDS=${NUM_SHARDS}
             if (( TOTAL < JUDGE_SHARDS )); then JUDGE_SHARDS=${TOTAL}; fi
             echo -e "\n[Step 4] Moderation judge (parallel=${PARALLEL_JUDGE}, ${JUDGE_SHARDS} shards over ${TOTAL} items)"
-
-            "${PY}" - "${STEP3_MERGED}" "${SHARD_DIR}/step4/src" "${JUDGE_SHARDS}" <<'PYEOF'
-import json, os, sys
-src, out_prefix, n = sys.argv[1], sys.argv[2], int(sys.argv[3])
-os.makedirs(os.path.dirname(out_prefix), exist_ok=True)
-data = json.load(open(src, "r", encoding="utf-8"))
-total = len(data); base = total // n; rem = total % n
-cursor = 0
-for i in range(n):
-    length = base + (1 if i < rem else 0)
-    chunk = data[cursor:cursor+length]
-    cursor += length
-    path = f"{out_prefix}_shard{i}.json"
-    json.dump(chunk, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=4)
-    print(f"[split] {path}  size={len(chunk)}")
-PYEOF
+            # 让每张卡只对 STEP3_MERGED 的一个 [s, e) 片段做 judge，
+            # moderation_as_judge_v4.py 支持 --start_idx/--end_idx，直接切片即可。
+            PREV_NUM_SHARDS=${NUM_SHARDS}
+            NUM_SHARDS=${JUDGE_SHARDS}
+            compute_shards "${TOTAL}"
+            NUM_SHARDS=${PREV_NUM_SHARDS}
 
             PIDS=()
             for ((i=0; i<JUDGE_SHARDS; i++)); do
                 gpu=${GPU_ARR[i]}
-                in="${SHARD_DIR}/step4/src_shard${i}.json"
-                out="${SHARD_DIR}/step4/shard${i}.json"
+                s=${SHARD_S[i]}
+                e=${SHARD_E[i]}
+                out="${SHARD_DIR}/step4/shard${i}_${s}_${e}.json"
                 log="${LOG_DIR}/step4_shard${i}_gpu${gpu}.log"
                 if (( PARALLEL_JUDGE )); then
                     (
                         export CUDA_VISIBLE_DEVICES="${gpu}"
                         "${PY}" "${JUDGE_SCRIPT}" \
-                            --response_file "${in}" \
+                            --response_file "${STEP3_MERGED}" \
+                            --start_idx "${s}" \
+                            --end_idx "${e}" \
                             --moderation "${MODERATION_MODEL}" \
                             --save_name "${out}"
                     ) >"${log}" 2>&1 &
                     PIDS+=("$!")
-                    echo "  shard ${i} gpu=${gpu} pid=$! log=${log}"
+                    echo "  shard ${i} gpu=${gpu} range=[${s},${e}) pid=$! log=${log}"
                 else
-                    echo "  [seq] shard ${i} gpu=${gpu} log=${log}"
+                    echo "  [seq] shard ${i} gpu=${gpu} range=[${s},${e}) log=${log}"
                     (
                         export CUDA_VISIBLE_DEVICES="${gpu}"
                         "${PY}" "${JUDGE_SCRIPT}" \
-                            --response_file "${in}" \
+                            --response_file "${STEP3_MERGED}" \
+                            --start_idx "${s}" \
+                            --end_idx "${e}" \
                             --moderation "${MODERATION_MODEL}" \
                             --save_name "${out}"
                     ) >"${log}" 2>&1 || { echo "[FATAL] Step 4 shard ${i} failed"; exit 1; }
@@ -434,7 +417,7 @@ PYEOF
             if (( PARALLEL_JUDGE )); then
                 wait_all "Step 4" "${PIDS[@]}"
             fi
-            do_merge "step4" "shard*.json" "${STEP4_MERGED}"
+            do_merge "step4" "shard*_*_*.json" "${STEP4_MERGED}" 1
         fi
     fi
 fi

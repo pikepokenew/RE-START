@@ -424,7 +424,12 @@ def parse_args():
     parser = argparse.ArgumentParser(description="LLM-as-Judge safety moderation runner.")
     parser.add_argument("--response_file", required=True, type=str,
                         help="Path to the .json/.jsonl file with LLM responses.")
-    parser.add_argument("--num_samples", type=int, default=-1)
+    parser.add_argument("--num_samples", type=int, default=-1,
+                        help="Take the first N samples. Ignored when --start_idx/--end_idx is given.")
+    parser.add_argument("--start_idx", type=int, default=0,
+                        help="Inclusive start index of the slice to judge.")
+    parser.add_argument("--end_idx", type=int, default=-1,
+                        help="Exclusive end index. -1 means 'until the end'.")
     parser.add_argument("--moderation", type=str, default="MD-Judge",
                         choices=["MD-Judge", "wildguard"])
     parser.add_argument("--save_path", type=str, default="evaluate/results")
@@ -439,6 +444,35 @@ def parse_args():
     return parser.parse_args()
 
 
+def slice_dataset(dataset: List[dict], start_idx: int, end_idx: int,
+                  num_samples: int) -> List[dict]:
+    """Select a contiguous slice of the dataset.
+
+    Priority:
+      1. If start_idx/end_idx is non-default, use [start_idx, end_idx).
+         end_idx = -1 means 'until the end'.
+      2. Otherwise fall back to legacy --num_samples (take first N).
+    """
+    total = len(dataset)
+    explicit_range = (start_idx != 0) or (end_idx != -1)
+
+    if explicit_range:
+        s = max(0, start_idx)
+        e = total if end_idx == -1 else min(end_idx, total)
+        if s >= e:
+            print(f"[slice] empty range: start={s} end={e} total={total}")
+            return []
+        print(f"[slice] using range [{s}, {e}) out of {total} samples")
+        return dataset[s:e]
+
+    if num_samples != -1:
+        n = min(num_samples, total)
+        print(f"[slice] using first {n} samples out of {total}")
+        return dataset[:n]
+
+    return dataset
+
+
 def main():
     args = parse_args()
 
@@ -450,8 +484,10 @@ def main():
 
     # --- load data ---
     dataset = load_dataset(args.response_file)
-    if args.num_samples != -1:
-        dataset = dataset[: args.num_samples]
+    dataset = slice_dataset(dataset, args.start_idx, args.end_idx, args.num_samples)
+    if not dataset:
+        print("Empty dataset after slicing. Abort.")
+        return
 
     # --- init judge ---
     cfg = get_config(args.moderation)

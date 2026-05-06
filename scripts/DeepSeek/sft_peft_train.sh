@@ -8,7 +8,7 @@ lr_list=("5e-5")
 epoch=3
 batch_size_list=("4")
 template="deepseek3"
-DEVICES="0,1,2,3,4,5,6,7,8"
+DEVICES="0,1,2,3,4,5,6,7"
 # DEVICES="0"
 lora_rank=64
 lora_alpha=64
@@ -25,8 +25,8 @@ dataset_name="wildjailbreak_ultrafeedback_DS-R1-14B_restart-2_with_hint"
 for lr in "${lr_list[@]}"; do
     for batch_size in "${batch_size_list[@]}"; do
     
-    # lr_scheduler_type=constant
-    lr_scheduler_type=cosine
+    lr_scheduler_type=constant
+    # lr_scheduler_type=cosine
     # model_folder="/home/share/models"
     # model_folder="/home/dwu/local_models"
     # model_folder="/home/dwu/LLaMA-Factory/models"

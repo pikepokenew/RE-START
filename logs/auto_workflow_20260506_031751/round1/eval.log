@@ -1,0 +1,47 @@
+usage: conda [-h] [-v] [--no-plugins] [-V] COMMAND ...
+conda: error: argument COMMAND: invalid choice: 'activate' (choose from 'clean', 'compare', 'config', 'create', 'info', 'init', 'install', 'list', 'notices', 'package', 'remove', 'uninstall', 'rename', 'run', 'search', 'update', 'upgrade', 'content-trust', 'doctor', 'repoquery', 'env')
+[auto_run_evaluation_pool] parsed 1 model entries:
+  - DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3|/apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+[cwd] /apdcephfs_jn3/share_535475/common/dellwu/RE-START
+[LOG_DIR] /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709
+[GPU pool] initialized with 8 slots: 0 1 2 3 4 5 6 7
+==========================
+🚀 评测模型: DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+   权重: /apdcephfs_jn3/share_535475/common/dellwu/LlamaFactory/models/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+   TAG=none  gpu_mem_util=0.92
+==========================
+[queue] 15 jobs for model DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+>> [GPU 0] dispatch: Jailbreak/python_string_full (pid=3163821)
+>> [GPU 1] dispatch: Jailbreak/python_list_full (pid=3163825)
+>> [GPU 2] dispatch: Jailbreak/python_stack_full (pid=3163829)
+>> [GPU 3] dispatch: Jailbreak/CodeChameleon_target_llama-2_tree (pid=3163833)
+>> [GPU 4] dispatch: Jailbreak/CodeChameleon_target_llama-2_list (pid=3163838)
+>> [GPU 5] dispatch: Jailbreak/CodeChameleon_target_llama-2_reverse (pid=3163843)
+>> [GPU 6] dispatch: Jailbreak/CodeChameleon_target_llama-2_half (pid=3163848)
+>> [GPU 7] dispatch: Jailbreak/ReNeLLM_target_llama-2 (pid=3163852)
+<< [GPU 7] done: Jailbreak/ReNeLLM_target_llama-2 (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_ReNeLLM_target_llama-2_gpu7.log)
+>> [GPU 7] dispatch: Jailbreak/Salad-attack_enhanced_set_sub_v1 (pid=3170908)
+<< [GPU 5] done: Jailbreak/CodeChameleon_target_llama-2_reverse (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeChameleon_target_llama-2_reverse_gpu5.log)
+>> [GPU 5] dispatch: Jailbreak/DeepInception_target_llama-2 (pid=3172175)
+<< [GPU 6] done: Jailbreak/CodeChameleon_target_llama-2_half (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeChameleon_target_llama-2_half_gpu6.log)
+>> [GPU 6] dispatch: Jailbreak/wildjailbreak_eval_v1 (pid=3174611)
+<< [GPU 3] done: Jailbreak/CodeChameleon_target_llama-2_tree (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeChameleon_target_llama-2_tree_gpu3.log)
+>> [GPU 3] dispatch: Safety/advbench (pid=3176103)
+<< [GPU 0] done: Jailbreak/python_string_full (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeAttack_python_string_full_gpu0.log)
+>> [GPU 0] dispatch: Safety/HEx-PHI (pid=3177695)
+<< [GPU 4] done: Jailbreak/CodeChameleon_target_llama-2_list (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeChameleon_target_llama-2_list_gpu4.log)
+>> [GPU 4] dispatch: Over_Safety/OKTest (pid=3177773)
+<< [GPU 7] done: Jailbreak/Salad-attack_enhanced_set_sub_v1 (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_Salad-attack_enhanced_set_sub_v1_gpu7.log)
+>> [GPU 7] dispatch: Over_Safety/XSTest (pid=3179760)
+[sync] waiting all jobs of model DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3 to finish...
+<< [GPU 5] done: Jailbreak/DeepInception_target_llama-2 (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_DeepInception_target_llama-2_gpu5.log)
+<< [GPU 1] done: Jailbreak/python_list_full (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeAttack_python_list_full_gpu1.log)
+<< [GPU 3] done: Safety/advbench (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Safety_advbench_gpu3.log)
+<< [GPU 0] done: Safety/HEx-PHI (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Safety_HEx-PHI_gpu0.log)
+<< [GPU 4] done: Over_Safety/OKTest (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Over_Safety_OKTest_gpu4.log)
+<< [GPU 7] done: Over_Safety/XSTest (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Over_Safety_XSTest_gpu7.log)
+<< [GPU 6] done: Jailbreak/wildjailbreak_eval_v1 (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_wildjailbreak_eval_v1_gpu6.log)
+<< [GPU 2] done: Jailbreak/python_stack_full (log: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709/DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3_Jailbreak_CodeAttack_python_stack_full_gpu2.log)
+[model done] DeepSeek-R1-Distill-Qwen-14B_peft_wildjailbreak_ultrafeedback_DS-R1-14B_restart-1_with_hint_r64_64_5e-5_constant_bs_4_ep_3
+🎉 完成！日志: /apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709
+[auto_run_evaluation_pool] LOG_DIR=/apdcephfs_jn3/share_535475/common/dellwu/RE-START//logs/auto_eval_pool_20260506_043709
