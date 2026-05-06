@@ -9,3 +9,5 @@ evaluate/harmful_questions/*.json
 evaluate/harmful_questions/data/
 evaluate/math/
 evaluate/evaluate/results/
+CodeAttack.zip
+*.zip
